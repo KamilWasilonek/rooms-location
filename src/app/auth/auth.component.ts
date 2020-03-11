@@ -1,39 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { SocialUser } from "angularx-social-login";
 
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from "rxjs";
 
-import { AuthorizationService } from '../shared/services/authorization.service';
+import { AuthorizationService } from "../shared/services/authorization.service";
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  selector: "app-auth",
+  templateUrl: "./auth.component.html",
+  styleUrls: ["./auth.component.scss"]
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
   user: SocialUser;
-  authSub: Subscription
+  authSub: Subscription;
 
-  constructor(private authService: AuthorizationService) { }
+  constructor(private authService: AuthorizationService) {}
 
   ngOnInit() {
     this.authSub = this.authService.authStatus$.subscribe(user => {
-      this.user = user
-    })
+      this.user = user;
+    });
   }
 
   signInWithGoogle(): void {
-    this.authService.signInWithGoogle()
+    this.authService.signInWithGoogle();
   }
 
   signOut(): void {
-    this.authService.signOut()
+    this.authService.signOut();
   }
 
   ngOnDestroy() {
-    if(this.authSub) {
-      this.authSub.unsubscribe()
+    if (this.authSub) {
+      this.authSub.unsubscribe();
     }
   }
 }

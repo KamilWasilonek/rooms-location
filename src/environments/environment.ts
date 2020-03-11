@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  oAuthKey: "115943660556-nkasnqlgnqrj4iu3qck34vjt6ppumbji.apps.googleusercontent.com",
-  googleCalendarScopes: 'profile email https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/calendar.events'
+  oAuthKey:
+    '115943660556-nkasnqlgnqrj4iu3qck34vjt6ppumbji.apps.googleusercontent.com',
+  googleCalendarScopes: "profile email https://www.googleapis.com/auth/calendar",
+  ApiKey: "AIzaSyBWXWaEUhCmjCjNHbvOzrXaRuyygDKcfn4"
 };
 
 /*

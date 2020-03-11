@@ -1,0 +1,8 @@
+<ng-container *ngIf='user'>
+  <button (click)="getCalendar()">Get calendar</button>
+  <ul>
+    <li *ngFor="let event of events">
+      {{ event.location }}
+    </li>
+  </ul>
+</ng-container>
