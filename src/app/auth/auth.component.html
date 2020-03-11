@@ -1,0 +1,8 @@
+<button (click)=signInWithGoogle()>Log in</button>
+<button (click)=signOut()>Log out</button>
+<div *ngIf="user">
+  <h3>{{user.name}}</h3>
+  <h3>{{user.email}}</h3>
+</div>
+
+<h3 *ngIf="!user">User are not logged</h3>
