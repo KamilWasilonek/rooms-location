@@ -1,0 +1,20 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 525.66 380.67">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <title>GD-floors</title>
+  <path id="building" class="cls-1" d="M157.29,187.92l135-22.16s5.53,21.83,7.62,31.86,3.36,18.64,13.24,26.25,25.3,13.22,39.39,13.22H444.7c18.06,0,25.67-4.86,33.27-9.42s10.91-10,17.29-26.25l28.39-72.37,157.9-27.7L581.83,361.06c-20.48,0-39.64,11.53-54,25.6s-19.4,32.67-19.4,52v42.25H367.14v-45c0-19-7.57-34.22-22.83-48.29s-38.08-26.5-57.51-26.5H199.54Z" transform="translate(-156.68 -100.71)"/>
+  <rect id="room6" class="cls-1" x="76.5" y="154.75" width="40.59" height="23.09"/>
+  <rect id="room5" class="cls-1" x="76.5" y="182.04" width="40.59" height="23.09"/>
+  <rect id="room4" class="cls-1" x="187.42" y="216.33" width="40.59" height="23.09"/>
+  <rect id="room3" class="cls-1" x="242.45" y="258.32" width="40.59" height="23.09"/>
+  <rect id="room2" class="cls-1" x="242.45" y="284.21" width="40.59" height="23.09"/>
+  <rect id="room1" class="cls-1" x="286.09" y="258.32" width="40.59" height="23.09"/>
+  <rect id="alaska" class="cls-1" x="286.09" y="284.21" width="40.59" height="23.09"/>
+</svg>
