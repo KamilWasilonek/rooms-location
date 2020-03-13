@@ -1,8 +1,13 @@
 <ng-container *ngIf='user'>
   <button (click)="getCalendar()">Get calendar</button>
   <ul>
-    <li *ngFor="let event of events">
-      {{ event.location }}
+    <li *ngFor="let room of rooms">
+      {{ room.summary }}
+      <ul>
+        <li *ngFor="let event of room.items">
+          {{event.summary}}
+        </li>
+      </ul>
     </li>
   </ul>
 </ng-container>

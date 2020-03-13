@@ -1,28 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpHeaders, HttpClient } from "@angular/common/http";
-import { SocialUser } from "angularx-social-login";
-import { AuthorizationService } from "../shared/services/authorization.service";
-import { Subscription } from "rxjs";
-import { environment } from "src/environments/environment";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { SocialUser } from 'angularx-social-login';
+import { AuthorizationService } from '../shared/services/authorization.service';
+import { Subscription, forkJoin } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { rooms } from './rooms';
 
 @Component({
-  selector: "app-calendar",
-  templateUrl: "./calendar.component.html",
-  styleUrls: ["./calendar.component.scss"]
+  selector: 'app-calendar',
+  templateUrl: './calendar.component.html',
+  styleUrls: ['./calendar.component.scss'],
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, OnDestroy {
   user: SocialUser;
   userSub$: Subscription;
-  events;
-  baseUrl = "https://www.googleapis.com/calendar/v3/calendars/";
+  rooms = [];
+  baseUrl = 'https://www.googleapis.com/calendar/v3/calendars/';
 
-  constructor(
-    private authService: AuthorizationService,
-    private http: HttpClient
-  ) {
+  constructor(private authService: AuthorizationService, private http: HttpClient) {
     this.userSub$ = this.authService.authStatus$.subscribe(user => {
       this.user = user;
-      console.log(this.user?.email);
     });
   }
 
@@ -30,22 +27,34 @@ export class CalendarComponent implements OnInit {
 
   getCalendar() {
     const headers = new HttpHeaders({
-      Authorization: "Bearer " + this.user.authToken
+      Authorization: 'Bearer ' + this.user.authToken,
     });
-    this.http
-      .get<any>(
-        `${this.baseUrl}${this.converEmail(this.user.email)}/events?key=${
-          environment.ApiKey
-        }`,
-        { headers }
-      )
-      .subscribe(res => {
-        this.events = res.items;
+
+    let params = new HttpParams();
+    params = params.append('key', environment.ApiKey);
+    params = params.append('maxResults', '20');
+    params = params.append('sanitizeHtml', 'true');
+    // params = params.append("timeMin", "2020-03-13T12:00:00.000Z");
+    // params = params.append("timeMax", "2020-03-13T15:00:00.000Z");
+    // params = params.append("orderBy", "startTime");
+    // params = params.append("singleEvents", "true");
+
+    const requests = [];
+    Object.keys(rooms).forEach(key => {
+      const req = this.http.get(`${this.baseUrl}${rooms[key]}/events`, {
+        headers,
+        params,
       });
+      requests.push(req);
+    });
+
+    forkJoin(requests).subscribe(result => {
+      this.rooms = result;
+    });
   }
 
   converEmail(email) {
-    return email.replace(/@/, "%40");
+    return email.replace(/@/, '%40');
   }
 
   ngOnDestroy() {
