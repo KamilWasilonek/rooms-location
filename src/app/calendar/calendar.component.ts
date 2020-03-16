@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { SocialUser } from 'angularx-social-login';
-import { AuthorizationService } from '../shared/services/authorization.service';
 import { Subscription, forkJoin } from 'rxjs';
+
 import { environment } from 'src/environments/environment';
+
+import { AuthorizationService } from '../shared/services/authorization.service';
 import { rooms } from './rooms';
 
 @Component({
@@ -13,12 +15,12 @@ import { rooms } from './rooms';
 })
 export class CalendarComponent implements OnInit, OnDestroy {
   user: SocialUser;
-  userSub$: Subscription;
+  userSub: Subscription;
   rooms = [];
   baseUrl = 'https://www.googleapis.com/calendar/v3/calendars/';
 
   constructor(private authService: AuthorizationService, private http: HttpClient) {
-    this.userSub$ = this.authService.authStatus$.subscribe(user => {
+    this.userSub = this.authService.authStatus$.subscribe(user => {
       this.user = user;
     });
   }
@@ -58,8 +60,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.userSub$) {
-      this.userSub$.unsubscribe();
+    if (this.userSub) {
+      this.userSub.unsubscribe();
     }
   }
 }
