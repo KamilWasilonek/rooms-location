@@ -11,26 +11,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { provideConfig } from './auth/auth.config';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthComponent,
-    CalendarComponent,
-    
-  ],
+  declarations: [AppComponent, AuthComponent, CalendarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {
       provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
+      useFactory: provideConfig,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}

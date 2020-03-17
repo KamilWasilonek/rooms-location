@@ -1,15 +1,15 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { SocialUser } from "angularx-social-login";
+import { SocialUser } from 'angularx-social-login';
 
-import { Subscription } from "rxjs";
+import { Subscription } from 'rxjs';
 
-import { AuthorizationService } from "../shared/services/authorization.service";
+import { AuthorizationService } from '../shared/services/authorization.service';
 
 @Component({
-  selector: "app-auth",
-  templateUrl: "./auth.component.html",
-  styleUrls: ["./auth.component.scss"]
+  selector: 'app-auth',
+  templateUrl: './auth.component.html',
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit, OnDestroy {
   user: SocialUser;
